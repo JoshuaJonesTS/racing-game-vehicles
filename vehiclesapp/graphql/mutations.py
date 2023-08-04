@@ -16,7 +16,7 @@ class CreateVehicle(graphene.Mutation):
 class EditVehicle(graphene.Mutation):
     class Arguments():
         id = graphene.ID(required=True)
-        name = graphene.String(require=True)
+        name = graphene.String(required=True)
 
     vehicle = graphene.Field(VehicleType)
 
