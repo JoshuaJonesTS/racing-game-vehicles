@@ -32,6 +32,6 @@ class EditVehicle(graphene.Mutation):
 
         return EditVehicle(vehicle=vehicle)
     
-class VehicleMutations(graphene.ObjectTypy):
+class VehicleMutations(graphene.ObjectType):
     create_vehicle = CreateVehicle.Field()
     edit_vehicle = EditVehicle.Field()
