@@ -1,6 +1,7 @@
 from graphene_django import DjangoObjectType
 from vehiclesapp.models import Vehicle
 import graphene
+from graphene_federation import key, override, shareable, extend, external, provides
 from .resolvers import vehicle
 
 @key("id")
