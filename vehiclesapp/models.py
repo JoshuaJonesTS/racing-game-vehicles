@@ -8,7 +8,7 @@ class Vehicle(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False, unique=True)
     name = models.CharField(max_length=15)
     speed = models.IntegerField()
-    acceraltion = models.IntegerField()
+    acceleration = models.IntegerField()
     durability = models.IntegerField()
     handling = models.IntegerField()
     traction = models.IntegerField()
