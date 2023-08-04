@@ -1,5 +1,5 @@
 import graphene
-from vehicles.models import Vehicle
+from vehiclesapp.models import Vehicle
 from .types import *
 from .resolvers import *
 

@@ -1,5 +1,5 @@
 from graphene_django import DjangoObjectType
-from vehicles.models import Vehicle
+from vehiclesapp.models import Vehicle
 import graphene
 from .resolvers import vehicle
 

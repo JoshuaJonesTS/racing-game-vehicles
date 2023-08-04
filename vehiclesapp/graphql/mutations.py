@@ -1,6 +1,6 @@
 import graphene
 from .types import VehicleType
-from vehicles.models import Vehicle
+from vehiclesapp.models import Vehicle
 
 class CreateVehicle(graphene.Mutation):
     class Arguments():

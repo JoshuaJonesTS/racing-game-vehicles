@@ -1,4 +1,4 @@
-from vehicles.models import Vehicle
+from vehiclesapp.models import Vehicle
 
 def all_vehicles():
     return Vehicle.objects.all()
