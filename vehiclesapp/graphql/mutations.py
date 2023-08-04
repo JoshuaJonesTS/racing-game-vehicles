@@ -2,14 +2,17 @@ import graphene
 from .types import VehicleType
 from vehiclesapp.models import Vehicle
 
+class VehicleInput(graphene.InputObjectType):
+    name = graphene.String(required=True)
+    speed = graphene.Int(required=False)
+    acceleration = graphene.Int(required=False)
+    durability = graphene.Int(required=False)
+    handling = graphene.Int(required=False)
+    traction = graphene.Int(required=False)
+
 class CreateVehicle(graphene.Mutation):
     class Arguments:
-        name = graphene.String(required=True)
-        # speed = graphene.Int(required=False)
-        # acceleration = graphene.Int(required=False)
-        # durability = graphene.Int(required=False)
-        # handling = graphene.Int(required=False)
-        # traction = graphene.Int(required=False)
+        vehicle_data = VehicleInput(required=True)
     
     vehicle = graphene.Field(VehicleType)
 
@@ -17,11 +20,11 @@ class CreateVehicle(graphene.Mutation):
     def mutate(cls, root, info, vehicle_data=None):    
         vehicle = VehicleType(
             name = vehicle_data.name,
-            # speed = vehicle_data.speed,
-            # acceleration = vehicle_data.acceleration,
-            # durability = vehicle_data.durability,
-            # handling = vehicle_data.handling,
-            # traction = vehicle_data.traction
+            speed = vehicle_data.speed,
+            acceleration = vehicle_data.acceleration,
+            durability = vehicle_data.durability,
+            handling = vehicle_data.handling,
+            traction = vehicle_data.traction
         )
         return CreateVehicle(vehicle=vehicle)
     
