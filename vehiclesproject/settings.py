@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'vehiclesapp.apps.VehiclesappConfig',
+    'graphene_django'
 ]
 
 MIDDLEWARE = [
