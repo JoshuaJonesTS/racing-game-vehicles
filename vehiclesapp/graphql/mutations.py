@@ -3,27 +3,27 @@ from .types import VehicleType
 from vehiclesapp.models import Vehicle
 
 class CreateVehicle(graphene.Mutation):
-    class Arguments():
+    class Arguments:
         name = graphene.String(required=True)
-        speed = graphene.Int(required=True)
-        acceleration = graphene.Int(required=True)
-        durability = graphene.Int(required=True)
-        handling = graphene.Int(required=True)
-        traction = graphene.Int(required=True)
+        # speed = graphene.Int(required=False)
+        # acceleration = graphene.Int(required=False)
+        # durability = graphene.Int(required=False)
+        # handling = graphene.Int(required=False)
+        # traction = graphene.Int(required=False)
     
     vehicle = graphene.Field(VehicleType)
 
     @classmethod
     def mutate(cls, root, info, vehicle_data=None):    
-        new_vehicle = Vehicle(
+        vehicle = VehicleType(
             name = vehicle_data.name,
-            speed = vehicle_data.speed,
-            acceleration = vehicle_data.acceleration,
-            durability = vehicle_data.acceleration,
-            handling = vehicle_data.handling,
-            traction = vehicle_data.traction
+            # speed = vehicle_data.speed,
+            # acceleration = vehicle_data.acceleration,
+            # durability = vehicle_data.durability,
+            # handling = vehicle_data.handling,
+            # traction = vehicle_data.traction
         )
-        return CreateVehicle(new_vehicle=new_vehicle)
+        return CreateVehicle(vehicle=vehicle)
     
 class EditVehicle(graphene.Mutation):
     class Arguments():
