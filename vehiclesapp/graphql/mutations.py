@@ -42,7 +42,7 @@ class EditVehicle(graphene.Mutation):
         try:   
             new_vehicle = Vehicle.objects.get(pk=kwargs.get('id'))
         except Vehicle.DoesNotExist:
-            Exception('Vehicle does not exist')
+            raise Exception('Vehicle does not exist')
 
         if 'name' in kwargs:
             new_vehicle.name=kwargs.get('name') 
