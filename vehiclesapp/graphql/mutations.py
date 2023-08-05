@@ -2,31 +2,28 @@ import graphene
 from .types import VehicleType
 from vehiclesapp.models import Vehicle
 
-class VehicleInput(graphene.InputObjectType):
-    name = graphene.String(required=True)
-    # speed = graphene.Int(required=False)
-    # acceleration = graphene.Int(required=False)
-    # durability = graphene.Int(required=False)
-    # handling = graphene.Int(required=False)
-    # traction = graphene.Int(required=False)
-
 class CreateVehicle(graphene.Mutation):
     class Arguments:
-        vehicle_data = VehicleInput(required=True)
-    
+        name = graphene.String(required=True)
+        speed = graphene.Int(required=True)
+        acceleration = graphene.Int(required=True)
+        durability = graphene.Int(required=True)
+        handling = graphene.Int(required=True)
+        traction = graphene.Int(required=True)
+       
     vehicle = graphene.Field(VehicleType)
 
     @classmethod
-    def mutate(root, info, vehicle_data=None):    
-        vehicle = VehicleType(
-            name = vehicle_data.name,
-            # speed = vehicle_data.speed,
-            # acceleration = vehicle_data.acceleration,
-            # durability = vehicle_data.durability,
-            # handling = vehicle_data.handling,
-            # traction = vehicle_data.traction
+    def mutate(cls, root, info, **kwargs):    
+        new_vehicle = Vehicle.objects.create(
+            name = kwargs.get('name'),
+            speed = kwargs.get('speed'),
+            acceleration = kwargs.get('acceleration'),
+            durability = kwargs.get('durability'),
+            handling = kwargs.get('handling'),
+            traction = kwargs.get('traction'),
         )
-        return CreateVehicle(vehicle=vehicle)
+        return CreateVehicle(vehicle=new_vehicle)
     
 class EditVehicle(graphene.Mutation):
     class Arguments():
