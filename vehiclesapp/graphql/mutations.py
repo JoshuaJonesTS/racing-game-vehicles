@@ -38,8 +38,11 @@ class EditVehicle(graphene.Mutation):
     vehicle = graphene.Field(VehicleType)
 
     @classmethod
-    def mutate(cls, root, info, **kwargs):        
-        new_vehicle = Vehicle.objects.get(pk=kwargs.get('id'))
+    def mutate(cls, root, info, **kwargs):     
+        try:   
+            new_vehicle = Vehicle.objects.get(pk=kwargs.get('id'))
+        except Vehicle.DoesNotExist:
+            Exception('Vehicle does not exist')
 
         if 'name' in kwargs:
             new_vehicle.name=kwargs.get('name') 
